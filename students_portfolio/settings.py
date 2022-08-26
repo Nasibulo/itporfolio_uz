@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# lokal uchun
 env = environ.Env(
     DEBUG=(bool, True),
     STATIC_ROOT=(str, os.path.join(BASE_DIR, 'static')),
@@ -28,7 +28,7 @@ environ.Env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -143,7 +143,8 @@ STATIC_URL = '/static/'
 #         os.path.join(BASE_DIR, 'assets'),  # debug uchun assets
 #     ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = env('MEDIA_ROOT')
+STATIC_ROOT = env('STATIC_ROOT')
 MEDIA_URL = ""
 
 
